@@ -8,15 +8,16 @@ releases. This page says how the library is fetched, checked, loaded and updated
 
 ```mermaid
 flowchart LR
-    Pin["tools/guitar-abi.json: tag and SHA-256"] --> Fetch["tools/fetch-guitar-abi.ps1"]
+    Pin["tools/guitar-abi.json: tag and SHA-256"] --> Fetch["tools/fetch-guitar-abi.ps1 or .sh"]
     Rel["GitHub release guitar-abi-v1"] --> Fetch
-    Fetch -->|"zip hash checked, library hash checked"| Vendor["vendor/guitar-abi/windows-x64/"]
+    Fetch -->|"zip hash checked, library hash checked"| Vendor["vendor/guitar-abi/platform/"]
     Vendor --> Load["GuitarAbi::load"]
     Pin -->|"compiled into the binary"| Load
     Load -->|"hash, then ABI version, then every function"| Ready["ModelTracker"]
 ```
 
-`tools/guitar-abi.json` names the release tag, the zip, and the SHA-256 of both the zip and the library.
+`tools/guitar-abi.json` names the release tag, and for each platform the zip and the SHA-256 of both the zip and the
+library. `tools/fetch-guitar-abi.ps1` fetches it on Windows and `sh tools/fetch-guitar-abi.sh` on macOS.
 `GuitarAbi::load` looks for the library in this order:
 
 1. the path in `RIFFOLOGY_GUITAR_ABI`
@@ -34,7 +35,7 @@ every tracker is freed, and unloading the library would unmap code those threads
 
 | File | What it is |
 |---|---|
-| `chordical_guitar_abi.dll` | The tracker and the model `r2-final-s2` compiled in |
+| `chordical_guitar_abi.dll` on Windows, `libchordical_guitar_abi.dylib` on macOS | The tracker and the model `r2-final-s2` compiled in |
 | `chordical_guitar_abi.h` | The C declarations |
 | `MODEL-ATTRIBUTION.md` | The model's training data and its licenses |
 | `SHA256SUMS` | Hashes of the library and the header |
@@ -72,8 +73,10 @@ needs no change to Riffology's code:
 
 1. In that repository: `pwsh rust/scripts/package-guitar-abi.ps1 -Publish -Tag guitar-abi-v2`. It builds the
    release library, zips it, and uploads the zip to this repository's release `guitar-abi-v2`.
-2. Here: change `tag`, `zip`, `zipSha256` and `sha256` in `tools/guitar-abi.json` to the values the script printed.
-3. Run `pwsh tools/fetch-guitar-abi.ps1` and the test suite. `crates/riffology-input/tests/replay_accuracy.rs`
+2. Here: change `tag`, and `zip`, `zipSha256` and `sha256` of that platform in `tools/guitar-abi.json`, to the values
+   the script printed. Run the script on Windows and on a Mac, so every platform in `tools/guitar-abi.json` moves to the
+   new tag.
+3. Run `pwsh tools/fetch-guitar-abi.ps1` (or `sh tools/fetch-guitar-abi.sh` on macOS) and the test suite. `crates/riffology-input/tests/replay_accuracy.rs`
    prints the new onset F1 on each fixture. Put those numbers in the pull request.
 
 A change to a struct or a function signature raises the ABI version, and Riffology's `ABI_VERSION` and
@@ -84,7 +87,7 @@ A change to a struct or a function signature raises the ABI version, and Riffolo
 | Platform | Library | Status |
 |---|---|---|
 | Windows x64 | `chordical_guitar_abi.dll` | Published |
-| macOS arm64 | `libchordical_guitar_abi.dylib` | The loader supports it. The library has to be built on a Mac and published with `-Tag` and a `macos-arm64` entry in `tools/guitar-abi.json` |
+| macOS arm64 | `libchordical_guitar_abi.dylib` | Published |
 | Linux x64 | `libchordical_guitar_abi.so` | The loader supports it. Not built yet |
 
 ## License

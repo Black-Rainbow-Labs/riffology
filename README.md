@@ -37,10 +37,11 @@ The game engine (the note highway, scoring, song selection) is the next part to 
 
 ## Run it
 
-Windows, with Rust 1.95 or newer:
+Windows or macOS on Apple silicon, with Rust 1.95 or newer:
 
 ```powershell
 pwsh tools/fetch-guitar-abi.ps1          # downloads the guitar model library and checks its SHA-256
+                                         # on macOS: sh tools/fetch-guitar-abi.sh
 cargo run --release -p riffology-app     # opens the window on the default audio input
 cargo run --release -p riffology-app -- --replay tests/fixtures/guitar/05_Rock1-130-A_solo.48k.wav
 ```

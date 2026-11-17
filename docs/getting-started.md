@@ -7,21 +7,31 @@ recording, and with MIDI.
 
 | Need | Why |
 |---|---|
-| Windows 10 or 11, 64 bit | The published guitar model library is a Windows DLL today. macOS is planned (see [The guitar model library](guitar-model.md)) |
+| Windows 10 or 11, 64 bit, or macOS on Apple silicon | The platforms the guitar model library is published for (see [The guitar model library](guitar-model.md)) |
 | Rust 1.95 or newer (`rustup update`) | The workspace's `rust-version` |
-| PowerShell 7 (`pwsh`) | The scripts in `tools/` |
-| A GPU with DirectX 12 or Vulkan | The window draws with wgpu |
+| PowerShell 7 (`pwsh`) | The scripts in `tools/`. On macOS the fetch script also has a shell version |
+| A GPU with DirectX 12, Vulkan or Metal | The window draws with wgpu |
 | An audio interface with the guitar on an input | Live play. A recording works without one |
 | ffmpeg on the PATH | Only for `tools/record-evidence.ps1` |
 
 ## Fetch the model library
 
+On Windows:
+
 ```powershell
 pwsh tools/fetch-guitar-abi.ps1
 ```
 
-It downloads `chordical-guitar-abi-v1-windows-x64.zip` from the release named in `tools/guitar-abi.json`, checks the
-zip's SHA-256 and the library's SHA-256 against that file, and unpacks it into `vendor/guitar-abi/windows-x64/`.
+On macOS:
+
+```sh
+sh tools/fetch-guitar-abi.sh
+```
+
+The script downloads the zip for the platform, `chordical-guitar-abi-v1-windows-x64.zip` or
+`chordical-guitar-abi-v1-macos-arm64.zip`, from the release named in `tools/guitar-abi.json`. It checks the zip's
+SHA-256 and the library's SHA-256 against that file, and unpacks it into `vendor/guitar-abi/windows-x64/` or
+`vendor/guitar-abi/macos-arm64/`. The shell version needs curl, unzip and node.
 `vendor/guitar-abi/` is ignored by git. The app and the tests refuse a library whose hash differs.
 
 ## Run with a guitar

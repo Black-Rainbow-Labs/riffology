@@ -10,6 +10,12 @@
       "zipSha256": "48bdc3a99b52b8ae842059a27203879a4c26cbc05ab7b776f564ccefd2668592",
       "library": "chordical_guitar_abi.dll",
       "sha256": "79bb705c54424181bf81eb5a8cb67cf550841a5788f729be11a7486f82a6bce0"
+    },
+    "macos-arm64": {
+      "zip": "chordical-guitar-abi-v1-macos-arm64.zip",
+      "zipSha256": "36b00f6b5ffcb6c2362b95a5abc9e4e1ae97a941698eb2316be9ba5d1bb1acd5",
+      "library": "libchordical_guitar_abi.dylib",
+      "sha256": "a198327130d5acf61fedb774defc5856e57efc202ab7b71daf9fd588e9faca37"
     }
   }
 }

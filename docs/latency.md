@@ -44,6 +44,17 @@ cores and a Python job about 5:
 added delay over 118 of 118 notes: median 3.08 ms, p95 5.84 ms, p99 8.48 ms, largest 58.87 ms
 ```
 
+Measured 2026-11-16 on a MacBook Pro (Apple M6, 2 performance cores and 4 efficiency cores, macOS 27.0) with a load
+average of about 5 from other work:
+
+```text
+added delay over 118 of 118 notes: median 5.90 ms, p95 6.28 ms, p99 8.70 ms, largest 8.76 ms
+```
+
+Two more runs on the Mac measured a median of 5.86 ms and 5.75 ms. The model runs on one thread, inline on the
+worker, so the larger figure on the Mac is the time one model run takes on that chip. The worker already has the
+user interactive QoS class there.
+
 The test is `#[ignore]` because it times real threads. Run it on a quiet machine and put its line in the pull
 request of any change to `riffology-input` or `riffology-core`.
 
