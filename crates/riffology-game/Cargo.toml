@@ -1,0 +1,16 @@
+[package]
+name = "riffology-game"
+description = "Riffology's game interface: the Game trait the engine implements, free play, and a small chart following example."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+riffology-core.workspace = true
+riffology-song.workspace = true
+riffology-fretboard.workspace = true
+egui.workspace = true
+rux.workspace = true

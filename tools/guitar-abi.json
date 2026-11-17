@@ -1,0 +1,15 @@
+{
+  "comment": "The guitar model library Riffology is built against. tools/fetch-guitar-abi.ps1 downloads the zip from the release named by tag and checks both hashes. The app refuses a library whose SHA-256 differs from platforms.<platform>.sha256.",
+  "repo": "Black-Rainbow-Labs/riffology",
+  "tag": "guitar-abi-v1",
+  "abiVersion": 1,
+  "modelVersion": "r2-final-s2",
+  "platforms": {
+    "windows-x64": {
+      "zip": "chordical-guitar-abi-v1-windows-x64.zip",
+      "zipSha256": "d5515f78115e424328544976f2f7020cc27b31153d9a7618d6d405da3f8bdeab",
+      "library": "chordical_guitar_abi.dll",
+      "sha256": "79bb705c54424181bf81eb5a8cb67cf550841a5788f729be11a7486f82a6bce0"
+    }
+  }
+}

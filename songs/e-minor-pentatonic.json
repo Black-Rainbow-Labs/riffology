@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "title": "E minor pentatonic",
+  "artist": "Riffology exercise",
+  "tuning": {
+    "strings": [
+      64,
+      59,
+      55,
+      50,
+      45,
+      40
+    ],
+    "capo": 0,
+    "name": "Standard"
+  },
+  "tempo_bpm": 90,
+  "notes": [
+    {
+      "time_s": 2,
+      "length_s": 0.6,
+      "midi": 40,
+      "string": 6,
+      "fret": 0
+    },
+    {
+      "time_s": 2.667,
+      "length_s": 0.6,
+      "midi": 43,
+      "string": 6,
+      "fret": 3
+    },
+    {
+      "time_s": 3.333,
+      "length_s": 0.6,
+      "midi": 45,
+      "string": 5,
+      "fret": 0
+    },
+    {
+      "time_s": 4,
+      "length_s": 0.6,
+      "midi": 47,
+      "string": 5,
+      "fret": 2
+    },
+    {
+      "time_s": 4.667,
+      "length_s": 0.6,
+      "midi": 50,
+      "string": 4,
+      "fret": 0
+    },
+    {
+      "time_s": 5.333,
+      "length_s": 0.6,
+      "midi": 52,
+      "string": 4,
+      "fret": 2
+    },
+    {
+      "time_s": 6,
+      "length_s": 0.6,
+      "midi": 55,
+      "string": 3,
+      "fret": 0
+    },
+    {
+      "time_s": 6.667,
+      "length_s": 0.6,
+      "midi": 57,
+      "string": 3,
+      "fret": 2
+    },
+    {
+      "time_s": 7.333,
+      "length_s": 0.6,
+      "midi": 59,
+      "string": 2,
+      "fret": 0
+    },
+    {
+      "time_s": 8,
+      "length_s": 0.6,
+      "midi": 62,
+      "string": 2,
+      "fret": 3
+    },
+    {
+      "time_s": 8.667,
+      "length_s": 0.6,
+      "midi": 64,
+      "string": 1,
+      "fret": 0
+    },
+    {
+      "time_s": 9.333,
+      "length_s": 0.6,
+      "midi": 67,
+      "string": 1,
+      "fret": 3
+    },
+    {
+      "time_s": 10,
+      "length_s": 0.6,
+      "midi": 64,
+      "string": 1,
+      "fret": 0
+    },
+    {
+      "time_s": 10.667,
+      "length_s": 0.6,
+      "midi": 62,
+      "string": 2,
+      "fret": 3
+    },
+    {
+      "time_s": 11.333,
+      "length_s": 0.6,
+      "midi": 59,
+      "string": 2,
+      "fret": 0
+    },
+    {
+      "time_s": 12,
+      "length_s": 0.6,
+      "midi": 57,
+      "string": 3,
+      "fret": 2
+    },
+    {
+      "time_s": 12.667,
+      "length_s": 0.6,
+      "midi": 55,
+      "string": 3,
+      "fret": 0
+    },
+    {
+      "time_s": 13.333,
+      "length_s": 0.6,
+      "midi": 52,
+      "string": 4,
+      "fret": 2
+    },
+    {
+      "time_s": 14,
+      "length_s": 0.6,
+      "midi": 50,
+      "string": 4,
+      "fret": 0
+    },
+    {
+      "time_s": 14.667,
+      "length_s": 0.6,
+      "midi": 47,
+      "string": 5,
+      "fret": 2
+    },
+    {
+      "time_s": 15.333,
+      "length_s": 0.6,
+      "midi": 45,
+      "string": 5,
+      "fret": 0
+    },
+    {
+      "time_s": 16,
+      "length_s": 0.6,
+      "midi": 43,
+      "string": 6,
+      "fret": 3
+    },
+    {
+      "time_s": 16.667,
+      "length_s": 0.6,
+      "midi": 40,
+      "string": 6,
+      "fret": 0
+    }
+  ],
+  "sections": [
+    {
+      "name": "Up",
+      "start_s": 2
+    },
+    {
+      "name": "Down",
+      "start_s": 10
+    }
+  ]
+}

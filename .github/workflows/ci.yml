@@ -1,0 +1,58 @@
+# Builds and tests Riffology on Windows with the real guitar model library (docs/testing.md layers 1 to 3), and checks
+# formatting, clippy, the documentation and the pull request check's own tests.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: fmt, docs, PR check tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: cargo fmt --all -- --check
+      - run: node tools/doc-style/check.mjs
+      - run: node --test .github/scripts/check-pull-request.test.mjs
+
+  windows:
+    name: Build and test on Windows
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Fetch the guitar model library
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: pwsh tools/fetch-guitar-abi.ps1
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Unit tests
+        run: cargo test -p riffology-core -p riffology-song -p riffology-fretboard -p riffology-game
+      - name: Input tests with the real model
+        run: cargo test --release -p riffology-input -- --nocapture
+      - name: App end to end
+        # The runner has no GPU. wgpu falls back to the WARP software adapter on Windows, which draws the window.
+        run: cargo test --release -p riffology-app -- --nocapture

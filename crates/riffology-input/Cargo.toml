@@ -1,0 +1,25 @@
+[package]
+name = "riffology-input"
+description = "Riffology's inputs: the guitar model library loader, live audio input, MIDI input and WAV replay, all writing to the note bus."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[features]
+# ASIO input on Windows. Needs the Steinberg ASIO SDK in CPAL_ASIO_DIR and libclang (see docs/audio-input.md).
+asio = ["cpal/asio"]
+
+[dependencies]
+riffology-core.workspace = true
+libloading.workspace = true
+cpal.workspace = true
+midir.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "=0.61.2", features = ["Win32_Foundation", "Win32_System_Threading"] }

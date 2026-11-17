@@ -1,0 +1,31 @@
+[package]
+name = "riffology-app"
+description = "The Riffology window: inputs, fretboard, game, and the latency readout."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "riffology"
+path = "src/main.rs"
+
+[features]
+asio = ["riffology-input/asio"]
+
+[dependencies]
+riffology-core.workspace = true
+riffology-input.workspace = true
+riffology-fretboard.workspace = true
+riffology-song.workspace = true
+riffology-game.workspace = true
+egui.workspace = true
+eframe.workspace = true
+rux.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+riffology-input.workspace = true

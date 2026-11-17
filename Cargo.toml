@@ -1,0 +1,47 @@
+# Riffology: a guitar game. See README.md and docs/README.md.
+# Every crates.io dependency is pinned to an exact version and Cargo.lock is committed.
+[workspace]
+resolver = "2"
+members = [
+    "crates/riffology-core",
+    "crates/riffology-input",
+    "crates/riffology-fretboard",
+    "crates/riffology-song",
+    "crates/riffology-game",
+    "crates/riffology-app",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.95"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Black-Rainbow-Labs/riffology"
+publish = false
+
+[workspace.dependencies]
+riffology-core = { path = "crates/riffology-core" }
+riffology-input = { path = "crates/riffology-input" }
+riffology-fretboard = { path = "crates/riffology-fretboard" }
+riffology-song = { path = "crates/riffology-song" }
+riffology-game = { path = "crates/riffology-game" }
+rtrb = "=0.3.2"
+libloading = "=0.9.1"
+cpal = "=0.18.2"
+midir = "=0.11.1"
+midly = "=0.5.3"
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.154"
+sha2 = "=0.11.1"
+egui = { version = "=0.36.2", default-features = false, features = ["default_fonts"] }
+eframe = { version = "=0.36.2", default-features = false, features = ["wgpu", "default_fonts", "accesskit"] }
+# The Black Rainbow Labs component library, pinned to the commit Chordical Sheet Music uses.
+rux = { git = "https://github.com/Black-Rainbow-Labs/black-rainbow-labs-rux.git", rev = "d6b4a19eaff4348eb28fb1f274037d7b4d97405f" }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+debug = "line-tables-only"
+
+[profile.dev]
+opt-level = 1

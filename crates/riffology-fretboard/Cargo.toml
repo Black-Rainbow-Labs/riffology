@@ -1,0 +1,15 @@
+[package]
+name = "riffology-fretboard"
+description = "Riffology's fretboard: geometry, marks and the rux drawn widget that lights the notes being played."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+riffology-core.workspace = true
+egui.workspace = true
+rux.workspace = true
+serde.workspace = true

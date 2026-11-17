@@ -1,0 +1,4 @@
+/target
+/vendor/guitar-abi/
+/_agent_output/
+*.pdb
