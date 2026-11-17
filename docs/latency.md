@@ -19,7 +19,7 @@ flowchart LR
 | Model decision after the onset, acoustic guitar | model | none set here | about 17.5 ms median | Chordical's MIDI Guitar measurements on GuitarSet |
 | Model decision, direct input electric guitar | model | none set here | about 30 ms | same |
 | Riffology's added delay | `InputPipeline`, note bus | median 6 ms, 95th percentile 10 ms | 3.08 ms median, 5.84 ms 95th percentile, 8.48 ms 99th percentile | `tests/latency.rs`, below |
-| Audio thread time per block in Riffology's code | `InputPipeline::process` | well under one block (2.7 ms) | 0.13 to 0.15 ms largest | the `max_block_ms` of the evidence traces |
+| Audio thread time per block in Riffology's code | `InputPipeline::process` | well under one block (2.7 ms) | largest block 0.13 and 0.15 ms in two runs; 14.25 ms in a third, one block while ffmpeg encoded the screen and a Blender render ran | the `max_block_ms` of the evidence traces. The time is wall time, so it includes the thread being descheduled |
 | Model time per hop | worker thread | 3 ms 99th percentile | 4.2 ms 99th percentile while another job used 14 cores | the app readout |
 | Frame | window | one frame | 1,547 frames in a 10.6 s replay (about 145 per second) | the end to end trace |
 
