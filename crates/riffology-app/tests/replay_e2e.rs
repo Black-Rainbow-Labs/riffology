@@ -94,11 +94,14 @@ fn check(name: &str) -> (usize, usize) {
 #[test]
 fn every_note_heard_lights_the_fretboard_within_a_frame() {
     let (mut needed, mut lit) = (0, 0);
-    for name in ["05_Rock1-130-A_solo", "05_Funk1-97-C_comp"] {
+    for name in ["05_Rock1-130-A_solo", "05_Jazz1-130-D_solo", "05_Funk1-97-C_comp"] {
         let (n, l) = check(name);
-        assert!(n > 10, "{name}: only {n} notes to check");
+        assert!(n > 0, "{name}: no note sounded past the next frame");
         needed += n;
         lit += l;
     }
+    // A software renderer (the CI runner has no GPU) draws about 5 frames a second, so fewer notes outlast a frame
+    // there than on a GPU, where all three fixtures give about 100. The count still has to mean something.
+    assert!(needed >= 15, "only {needed} notes sounded past the next frame");
     assert_eq!(lit, needed);
 }

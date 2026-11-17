@@ -10,7 +10,7 @@ and the rules a new test follows.
 |---|---|---|---|
 | 1. Unit | `cargo test -p riffology-core -p riffology-song -p riffology-fretboard -p riffology-game` | Pitches, placement, the note bus across threads, player state, charts, MIDI import, fretboard geometry, chart following | seconds |
 | 2. Input, real model | `cargo test --release -p riffology-input` | The library loader, accuracy through the live path on GuitarSet, no notes from hum, no allocation on the audio thread | about a minute |
-| 3. App, end to end | `cargo test --release -p riffology-app` | The built app in a window replays two fixtures; every note heard is drawn on the fretboard within a frame | about a minute |
+| 3. App, end to end | `cargo test --release -p riffology-app` | The built app in a window replays three fixtures; every note heard is drawn on the fretboard within a frame | about a minute |
 | 4. Timing | `cargo test --release -p riffology-input --test latency -- --ignored --nocapture` | Riffology's added delay, on a quiet machine | about a minute |
 | 5. Look at it | `pwsh tools/record-evidence.ps1` | A video of the release build for the pull request | 30 seconds |
 
