@@ -42,8 +42,7 @@ fn notes_land_at_their_seconds_through_a_tempo_change() {
     smf.write(&mut bytes).unwrap();
 
     let chart = import_midi(&bytes, "tempo", Tuning::standard(), &MidiImportOptions::default()).unwrap();
-    let got: Vec<Placed> =
-        chart.notes.iter().map(|n| (n.time_s, n.length_s, n.midi, n.string, n.fret)).collect();
+    let got: Vec<Placed> = chart.notes.iter().map(|n| (n.time_s, n.length_s, n.midi, n.string, n.fret)).collect();
     assert_eq!(
         got,
         vec![(0.0, 0.5, 40, Some(6), Some(0)), (1.0, 1.0, 59, Some(2), Some(0)), (1.0, 1.0, 64, Some(1), Some(0))]
